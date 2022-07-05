@@ -29,6 +29,13 @@
         {% for mov in movs %}
         <tr>
           <td>{{ mov.fecha }}</td>
+          <td>
+            {% if mov.fecha %}
+            {{ mov.fecha }}
+            {% else %}
+            ---
+            {% endif %}
+          </td>
           <td>{{ mov.concepto }}</td>
           <td>
             {% if mov.ingreso_gasto == 'I' %}
@@ -39,6 +46,15 @@
           </td>
           <td class="numero">{{ mov.cantidad }}</td>
         </tr>
+        {% if mov.errores %}
+        <tr>
+          <td colspan="4" class="error">
+            {% for error in mov.errores %}
+            {{ error }}.
+            {% endfor %}
+          </td>
+        </tr>
+        {% endif %}       
         {% endfor %}
       {% else %}
         <tr>

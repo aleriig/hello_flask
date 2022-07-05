@@ -7,16 +7,26 @@ Un movimiento debe tener:
 4. Cantidad
 """
 import csv
+from datetime import date, datetime
 
 from . import FICHERO
 
 
 class Movimiento:
     def __init__(self, fecha, concepto, tipo, cantidad):
-        self.fecha = fecha
+        self.errores = []
+        try:
+            self.fecha = date.fromisoformat(fecha)
+        except ValueError:
+            self.errores.append("Formato de la fecha no es válido")
+        
+        
         self.concepto = concepto
         self.tipo = tipo
         self.cantidad = cantidad
+
+    def validar_fecha(fecha):
+        pass
 
 
 class ListaMovimientos:
@@ -28,7 +38,7 @@ class ListaMovimientos:
             reader = csv.DictReader(fichero)
             for linea in reader:
                 # creo un movimiento para cada apartado y guardarlo
-                mov = Movimiento(linea["fecha"], linea["concepto"], linea["tipo"], linea["cantidad"] )
+                mov = Movimiento(linea["fecha"], linea["concepto"], linea["ingreso_gasto"], linea["cantidad"] )
                 self.movimientos.append(mov)
 
         # es otra manera de hacer el bloque anterior
