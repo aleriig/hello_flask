@@ -21,13 +21,15 @@ class Movimiento:
 
 class ListaMovimientos:
     def __init__(self):
-        self.lista_movimientos = []
+        self.movimientos = []
 
     def leer_archivo(self):
         with open(FICHERO, "r") as fichero:
             reader = csv.DictReader(fichero)
             for linea in reader:
-                self.lista_movimientos.append(linea)
+                # creo un movimiento para cada apartado y guardarlo
+                mov = Movimiento(linea["fecha"], linea["concepto"], linea["tipo"], linea["cantidad"] )
+                self.movimientos.append(mov)
 
         # es otra manera de hacer el bloque anterior
         # file = open("data/movements.csv", "r")
