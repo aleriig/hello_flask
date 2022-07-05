@@ -1,7 +1,7 @@
 from flask import render_template
 
-from balance import app
-from .models import MovementsList
+from . import app
+from .models import ListaMovimientos
 
 
 @app.route('/')
@@ -9,19 +9,21 @@ def home():
     """
     Muestra la lista de movimientos cargados.
     """
-    movements = MovementsList()
-    movements.read_file()
-    return render_template("start.html", movs=movements.movements_list)
-    
+    movimientos = ListaMovimientos()
+    movimientos.leer_archivo()
+    return render_template("inicio.html", movs=movimientos.lista_movimientos)
 
-@app.route('/new')
-def new():
-    return "Creacion de movimiento"
 
-@app.route('/modify')
-def update():
+@app.route('/nuevo')
+def nuevo():
+    return "Creación de movimiento"
+
+
+@app.route('/modificar')
+def actualizar():
     return "Actualizar movimiento"
 
-@app.route('/delete')
+
+@app.route('/borrar')
 def borrar():
     return "Borrar movimiento"
