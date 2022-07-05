@@ -50,3 +50,9 @@ table.paper{
     color: red;
 }
 
+table.paper .error {
+    font-size: small;
+    padding-left: 40px;
+    color: #990000;
+  }
+  
