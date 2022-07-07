@@ -1,4 +1,4 @@
-fecha,concepto,ingreso_gasto,cantidad
+fecha,concepto,tipo,cantidad
 2021-01-05,aguinaldos,I,750.0
 2021-01-05,reyes Marisa,G,24.0
 2021-01-03,gasolina,G,50.0
