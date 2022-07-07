@@ -16,7 +16,7 @@ def home():
 
 @app.route('/nuevo')
 def nuevo():
-    return "Creación de movimiento"
+    return render_template("nuevo.html")
 
 
 @app.route('/modificar')
