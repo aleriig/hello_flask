@@ -12,7 +12,47 @@ Listado de movimientos
 
 {% block contenido %}
 {{super()}}
-<div class="panel">
-  <p>Hola, soy el formulario para crear un movimiento</p>
-</div>
+
+<!-- 
+  - CRUD (Create, Read, Update, Delete)
+  - GET: read (pides)
+  - POST: create, delete (envias)
+  - PUT: update (envias)
+ -->
+<form action="/nuevo" method="post">
+  <div class="campo-formulario">
+    <label for="fecha">Fecha</label>
+    <input type="date" id="fecha" name="fecha">
+  </div>
+
+  <div class="campo-formulario">
+    <label for="hora">Hora</label>
+    <input type="time" id="hora" name="hora">
+  </div>
+
+  <div class="campo-formulario">
+    <label for="concepto">Concepto</label>
+    <input type="text" id="concepto" name="concepto">
+  </div>
+
+  <div class="campo-formulario">
+    <input type="radio" name="ingreso-gasto" id="ingreso" value="I">
+    <label for="ingreso" class="radio-label">Ingreso</label>
+    <input type="radio" name="ingreso-gasto" id="gasto" value="G">
+    <label for="gasto" class="radio-label">Gasto</label>
+  </div>
+
+  <div class="campo-formulario">
+    <label for="cantidad">Cantidad</label>
+    <input type="number" id="cantidad" name="cantidad">
+  </div>
+
+  <div class="acciones">
+    <!-- <input type="submit" value="Agregar"> -->
+    <button class="blue-button" type="submit">Agregar</button>
+  </div>
+</form>
+
+
+
 {% endblock %}

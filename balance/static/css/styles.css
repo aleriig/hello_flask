@@ -61,3 +61,20 @@ table.paper .error {
     color: #990000;
   }
   
+.campo-formulario label {
+    display: block;
+    /* 1 rem equivale a 16px. rem significa elemento raiz */
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0;
+    margin-top: .5rem;
+}
+
+.campo-formulario .radio-label {
+    display: inline-block;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+}
+
+.campo-formulario input:not([type="radio"]) {
+}

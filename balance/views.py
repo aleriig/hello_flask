@@ -13,16 +13,13 @@ def home():
     movimientos.leer_archivo()
     return render_template("inicio.html", movs=movimientos.movimientos)
 
-
 @app.route('/nuevo')
 def nuevo():
     return render_template("nuevo.html")
 
-
 @app.route('/modificar')
 def actualizar():
     return "Actualizar movimiento"
-
 
 @app.route('/borrar')
 def borrar():
