@@ -11,6 +11,7 @@ from datetime import date, datetime
 
 from . import FICHERO
 
+CLAVES_IGNORADAS = ["errores"]
 
 class Movimiento:
     def __init__(self, dic_datos):
@@ -49,9 +50,29 @@ class ListaMovimientos:
                 mov = Movimiento(linea)
                 self.movimientos.append(mov)
 
-        # es otra manera de hacer el bloque anterior
-        # file = open("data/movements.csv", "r")
-        # reader = csv.DictReader(file)
-        # for line in reader:
-        #     self.movements_list.append(line)
-        # file.close()
+    def agregar(self, movimiento):
+        self.movimientos.append(movimiento)
+        self.guardar_archivo()
+
+
+    def guardar_archivo(self):
+        # pedimos el 1er movimiento de la lista creada, lo devolvemos como un diccionario y el programa nos devuelve los nombres de las claves y se guarda en nombres, como una lista de las claves
+        nombres = list(self.movimientos[0].__dict__.keys())
+        for nombre in nombres:
+            if nombre in CLAVES_IGNORADAS:
+                nombres.remove(nombre)
+
+        with open(FICHERO, "w") as fichero:
+            writer = csv.DictWriter(fichero, nombres)
+            writer.writeheader()
+            for mov in self.movimientos:
+                dic_mov = mov.__dict__
+                for nombre in CLAVES_IGNORADAS:
+                    dic_mov.pop(nombre)
+                writer.writerow(dic_mov)
+
+    def __str__(self):
+        return f"Lista de {len(self.movimientos)} movimientos"
+
+    def __repr__(self) -> str:
+        return self.__str__()
