@@ -7,7 +7,7 @@ Un movimiento debe tener:
 4. Cantidad
 """
 import csv
-from datetime import date, datetime
+from datetime import date
 
 from . import FICHERO
 
@@ -18,8 +18,16 @@ class Movimiento:
         self.errores = []
         try:
             self.fecha = date.fromisoformat(dic_datos["fecha"])
+            """
+            1. Guardamos la fecha de hoy
+            2. si la fecha es mayor que hoy:
+                a. genero un error
+            """
+            hoy = date.today()
+            if self.fecha > hoy:
+                self.errores.append("La fecha no puede ser futura")
         except ValueError:
-            self.errores.append("Formato de la fecha no es válido")
+            self.errores.append("El formato de la fecha no es válido")
         
         
         self.concepto = dic_datos["concepto"]
